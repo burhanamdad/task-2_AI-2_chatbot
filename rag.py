@@ -9,9 +9,16 @@ client = chromadb.PersistentClient(
     path="./vectordb"
 )
 
-collection = client.get_or_create_collection(
-    name="company_docs"
-)
+try:
+    collection = client.get_collection(
+        name="company_docs"
+    )
+except:
+    collection = client.get_or_create_collection(
+        name="company_docs"
+    )
+
+
 def retrieve(query):
 
     query_embedding = model.encode(
