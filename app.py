@@ -55,8 +55,10 @@ if query:
     )
 
 
-    source=metadata[0]["source"]
-
+    if metadata and len(metadata) > 0:
+    source = metadata[0].get("source", "Unknown")
+else:
+    source = "No source found"
 
     with st.chat_message(
         "assistant"
